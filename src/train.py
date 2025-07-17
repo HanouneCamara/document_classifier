@@ -32,3 +32,19 @@ def train(model, train_loader, val_loader, device, epochs=10, lr=0.001):
             
         avg_loss = running_loss / len(train_loader)
         print(f"Epoch [{epoch+1}/{epochs}] - Train Loss: {avg_loss:.4f}")
+        
+        # Phase d'évaluation
+        model.eval()
+        correct = 0
+        total = 0
+        
+        with torch.no_grad():
+            for inputs, labels in val_loader:
+                inputs, labels = inputs.to(device), labels.to(device)
+                outputs = model(inputs)
+                _, predicted = torch.max(outputs, 1)
+                correct += (predicted == labels).sum().item()
+                total += labels.size(0)
+                
+        accuracy = correct / total
+        print(f"Validation Accuracy: {accuracy:.2%}")
