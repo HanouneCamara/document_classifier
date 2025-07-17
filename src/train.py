@@ -1,6 +1,7 @@
 import torch
 import torch.nn
 import torch.optim
+import os
 
 # Fontion pour l'entraînement
 def train(model, train_loader, val_loader, device, epochs=10, lr=0.001):
@@ -50,5 +51,6 @@ def train(model, train_loader, val_loader, device, epochs=10, lr=0.001):
         print(f"Validation Accuracy: {accuracy:.2%}")
 
     # Sauvegarder le modèle entraîné
-    torch.save(model.state_dict(), "model.pth")
-    print("✅ Modèle sauvegardé sous le nom model.pth")
+    os.makedirs("models", exist_ok=True)
+    torch.save(model.state_dict(), "models/model.pth") 
+    print("✅ Modèle sauvegardé dans models/model.pth")

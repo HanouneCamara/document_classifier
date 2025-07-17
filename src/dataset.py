@@ -4,23 +4,27 @@ from torchvision import datasets, transforms
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 
-def get_dataloaders(data_dir, batch_size=32):
-    transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                             std=[0.229, 0.224, 0.225]
-        )
-    ])
+def get_dataloaders(data_dir, batch_size=4):
+    data_transforms = {
+        "train": transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+        ]),
+        "val": transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+        ]),
+    }
     
-    train_dataset = datasets.ImageFolder(os.path.join(data_dir, "train"), transform=transform)
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    image_datasets = {
+        "train": datasets.ImageFolder(os.path.join(data_dir, "Training_data"), transform=data_transforms["train"]),
+        "val": datasets.ImageFolder(os.path.join(data_dir, "Testing_Data"), transform=data_transforms["val"]),
+    }
     
-    val_dataset = datasets.ImageFolder(os.path.join(data_dir, "val"), transform=transform)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True)
+    dataloaders = {
+        "train": DataLoader(image_datasets["train"], batch_size=batch_size, shuffle=True),
+        "val": DataLoader(image_datasets["val"], batch_size=batch_size, shuffle=False),
+    }
     
-    """
-    test_dataset = datasets.ImageFolder(os.path.join(data_dir, "test"), transform=transform)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
-    """
-    return train_loader, val_loader
+    return dataloaders["train"], dataloaders["val"]

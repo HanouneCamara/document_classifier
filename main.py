@@ -5,7 +5,7 @@ from src.train import train
 import torch
 
 # Charger les DataLoaders
-train_loader, val_loader = get_dataloaders("notebooks/hymenoptera_data", batch_size=4)
+train_loader, val_loader = get_dataloaders("data", batch_size=4)
 
 # Afficher un batch d'entraînement
 images, labels = next(iter(train_loader))
@@ -20,7 +20,7 @@ for i in range(4):
 plt.show()
 
 # Créer le modèle avec 2 classes
-model = build_model(num_classes=2)
+model = build_model(num_classes=3)
 print(model)
 
 # Vérifier le nombre de paramètres
