@@ -48,3 +48,7 @@ def train(model, train_loader, val_loader, device, epochs=10, lr=0.001):
                 
         accuracy = correct / total
         print(f"Validation Accuracy: {accuracy:.2%}")
+
+    # Sauvegarder le modèle entraîné
+    torch.save(model.state_dict(), "model.pth")
+    print("✅ Modèle sauvegardé sous le nom model.pth")
