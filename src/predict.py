@@ -6,6 +6,8 @@ import torchvision.models as models
 import argparse
 import os
 
+from utils import preprocess_image, display_results
+
 
 class_names = ['driving_license', 'others', 'social_security']
 # Charge le modèle avec les bons poids
@@ -20,26 +22,18 @@ def load_model(model_path):
 
 # Fonction de prédiction
 def predict_image(model, image_path):
-    transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], 
-                             [0.229, 0.224, 0.225])
-    ])
-
-    image = Image.open(image_path).convert('RGB')
-    image = transform(image).unsqueeze(0)
+    image = preprocess_image(image_path) 
 
     with torch.no_grad():
         outputs = model(image)
         _, predicted = torch.max(outputs, 1)
         # Calcul des probabilités
         probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
-        for i, prob in enumerate(probabilities):
-            print(f"{class_names[i]}: {prob.item():.4f}")
+        
+        
+    prediction = class_names[predicted.item()]
+    return prediction, probabilities
 
-
-    return class_names[predicted.item()]
 
 # Point d’entrée du script
 if __name__ == '__main__':
@@ -53,6 +47,8 @@ if __name__ == '__main__':
         exit(1)
 
     model = load_model(args.model)
-    prediction = predict_image(model, args.image)
+    prediction, probabilities = predict_image(model, args.image)
+    display_results(args.image, prediction, probabilities, class_names)
 
-    print(f"✅ L’image {os.path.basename(args.image)} est classée comme : {prediction}")
+
+    
