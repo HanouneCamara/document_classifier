@@ -33,6 +33,11 @@ def predict_image(model, image_path):
     with torch.no_grad():
         outputs = model(image)
         _, predicted = torch.max(outputs, 1)
+        # Calcul des probabilités
+        probabilities = torch.nn.functional.softmax(outputs[0], dim=0)
+        for i, prob in enumerate(probabilities):
+            print(f"{class_names[i]}: {prob.item():.4f}")
+
 
     return class_names[predicted.item()]
 
@@ -44,7 +49,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if not os.path.exists(args.image):
-        print("❌ Erreur : image non trouvée :", args.image)
+        print("Erreur : image non trouvée :", args.image)
         exit(1)
 
     model = load_model(args.model)
