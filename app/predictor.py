@@ -12,7 +12,9 @@ from src.utils import preprocess_image
 
 
 # Liste des classes
-class_names = ['driving_license', 'others', 'social_security']
+# Liste des classes lisibles
+class_names = ['Driving License', 'Others', 'Social Security']
+
 
 # Charger le modèle (à faire une seule fois)
 def load_model(model_path):

@@ -7,7 +7,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from predictor import load_model, predict 
 
 app = Flask(__name__)
-UPLOAD_FOLDER = os.path.join('app', 'static', 'uploads')
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
+
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 model = load_model("../models/model.pth")
