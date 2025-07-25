@@ -36,7 +36,7 @@ L'application propose une interface web conviviale pour téléverser un document
 
 1. **Cloner le dépôt**
    ```sh
-   git clone <url_du_repo>
+   git clone https://github.com/HanouneCamara/document_classifier.git
    cd document_classifier
    ```
 
