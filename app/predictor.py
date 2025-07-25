@@ -12,7 +12,6 @@ from src.utils import preprocess_image
 
 
 # Liste des classes
-# Liste des classes lisibles
 class_names = ['Driving License', 'Others', 'Social Security']
 
 
@@ -33,4 +32,5 @@ def predict(model, image_path):
         _, predicted = torch.max(outputs, 1)
         probabilities = F.softmax(outputs[0], dim=0)
     prediction = class_names[predicted.item()]
-    return prediction
+    confidence = float(probabilities[predicted.item()] * 100)  # Pourcentage
+    return prediction, confidence
