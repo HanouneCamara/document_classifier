@@ -1,11 +1,12 @@
 import torch
 import torchvision.models
 import torch.nn
+from torchvision.models import ResNet18_Weights
 
 
 def build_model(num_classes):
     # Charger resnet18 pré-entraîné
-    model = torchvision.models.resnet18(pretrained=True)
+    model = torchvision.models.resnet18(weights=ResNet18_Weights.DEFAULT)
     
     # Geler les anciennes couches
     for param in model.parameters():

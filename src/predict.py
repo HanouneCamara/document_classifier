@@ -1,8 +1,8 @@
 import torch
-import torchvision.transforms as transforms
 from PIL import Image
 import torch.nn as nn
 import torchvision.models as models
+from torchvision.models import ResNet18_Weights
 import argparse
 import os
 
@@ -12,7 +12,7 @@ from utils import preprocess_image, display_results
 class_names = ['driving_license', 'others', 'social_security']
 # Charge le modèle avec les bons poids
 def load_model(model_path):
-    model = models.resnet18(pretrained=True)
+    model = models.resnet18(weights=ResNet18_Weights.DEFAULT)
     num_ftrs = model.fc.in_features
     model.fc = nn.Linear(num_ftrs, len(class_names))
 

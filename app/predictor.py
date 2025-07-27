@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 import torch.nn.functional as F
+from torchvision.models import ResNet18_Weights
 import os
 import sys
 
@@ -17,7 +18,7 @@ class_names = ['Driving License', 'Others', 'Social Security']
 
 # Charger le modèle (à faire une seule fois)
 def load_model(model_path):
-    model = models.resnet18(pretrained=True)
+    model = models.resnet18(weights=ResNet18_Weights.DEFAULT)
     num_ftrs = model.fc.in_features
     model.fc = nn.Linear(num_ftrs, len(class_names))
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
