@@ -25,7 +25,16 @@ def index():
             file.save(image_path)
             prediction, confidence = predict(model, image_path)
             confidence = f"{confidence:.2f}"  # Formate à 2 décimales
-            image_url = f"/static/uploads/{filename}"
+
+            # Nouveau : déplacer l'image dans le dossier correspondant à la prédiction
+            if prediction:
+                class_folder = os.path.join(UPLOAD_FOLDER, prediction)
+                os.makedirs(class_folder, exist_ok=True)
+                new_image_path = os.path.join(class_folder, filename)
+                os.rename(image_path, new_image_path)
+                image_url = f"/static/uploads/{prediction}/{filename}"
+            else:
+                image_url = f"/static/uploads/{filename}"
     else:
         confidence = None
 
