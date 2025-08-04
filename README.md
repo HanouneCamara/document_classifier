@@ -14,7 +14,7 @@ L'application propose une interface web conviviale pour téléverser un document
 
 ## Aperçu
 
-![Interface de l'application](../document_classifier/app/assets/apercu.png)
+![Interface de l'application](app/assets/apercu.png)
 *Exemple d'utilisation de l'application web.*
 
 
