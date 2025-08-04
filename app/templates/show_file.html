@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ filename }}</title></head>
+<body>
+    <h1>{{ filename }} (catégorie : {{ category }})</h1>
+    <img src="{{ file_url }}" width="400">
+    <p><a href="{{ url_for('list_files_in_category', category=category) }}">← Retour à {{ category }}</a></p>
+</body>
+</html>

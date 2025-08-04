@@ -40,5 +40,29 @@ def index():
 
     return render_template('index.html', prediction=prediction, confidence=confidence, image_url=image_url)
 
+@app.route('/files')
+def list_categories():
+    folders = [
+        f for f in os.listdir(UPLOAD_FOLDER)
+        if os.path.isdir(os.path.join(UPLOAD_FOLDER, f))
+    ]
+    return render_template('files.html', folders=folders)
+
+@app.route('/files/<category>')
+def list_files_in_category(category):
+    folder_path = os.path.join(UPLOAD_FOLDER, category)
+    if not os.path.exists(folder_path):
+        return "Catégorie introuvable", 404
+
+    files = os.listdir(folder_path)
+    return render_template('category_files.html', category=category, files=files)
+
+@app.route('/files/<category>/<filename>')
+def show_file(category, filename):
+    file_url = f"/static/uploads/{category}/{filename}"
+    return render_template('show_file.html', category=category, filename=filename, file_url=file_url)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)

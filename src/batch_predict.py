@@ -3,7 +3,7 @@ import argparse
 
 import torch
 from predict import load_model, predict_image
-from utils import display_results, preprocess_image
+from utils import display_results
 
 # Fonction pour traiter un dossier d'images
 def batch_predict(model, folder_path):

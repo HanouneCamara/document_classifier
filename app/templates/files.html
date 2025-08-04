@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Catégories</title></head>
+<body>
+    <h1>Catégories de fichiers</h1>
+    <ul>
+        {% for folder in folders %}
+            <li><a href="{{ url_for('list_files_in_category', category=folder) }}">{{ folder }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

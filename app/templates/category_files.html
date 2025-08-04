@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Fichiers - {{ category }}</title></head>
+<body>
+    <h1>Fichiers dans la catégorie : {{ category }}</h1>
+    <ul>
+        {% for file in files %}
+            <li><a href="{{ url_for('show_file', category=category, filename=file) }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('list_categories') }}">← Retour aux catégories</a></p>
+</body>
+</html>
