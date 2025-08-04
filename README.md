@@ -12,6 +12,14 @@ L'application propose une interface web conviviale pour téléverser un document
 - 📁 Prédiction en lot sur un dossier complet d’images possible via script.
 - 🧠 Possibilité d'entraîner et tester le modèle sur vos propres données.
 
+## Aperçu
+
+![Interface](![Uploading image.png…]()
+)  
+*Exemple d'utilisation de l'application web.*
+
+
+
 ## Structure du projet
 
 ```
