@@ -1,4 +1,6 @@
 # Classificateur de Documents
+![Python](https://img.shields.io/badge/python-3.9+-blue)
+
 
 Ce projet est une application de classification automatique de documents (permis de conduire, sécurité sociale, autres) à partir d'images, basée sur un modèle de deep learning (ResNet18).  
 L'application propose une interface web conviviale pour téléverser un document et obtenir sa catégorie.
@@ -88,4 +90,6 @@ Hanoune
 
 ---
 
-Projet réalisé seul dans le cadre d'un
+## Licence
+
+Ce projet est fourni à des fins éducatives dans le cadre d’un stage. Toute réutilisation doit être créditée à l’auteur.
