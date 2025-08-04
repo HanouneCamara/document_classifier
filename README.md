@@ -7,10 +7,10 @@ L'application propose une interface web conviviale pour téléverser un document
 
 ## Fonctionnalités
 
-- **Classification automatique** de documents en 3 classes : Permis de conduire, Sécurité sociale, Autres.
-- **Interface web** moderne pour l'upload et la visualisation des résultats.
-- **Prédiction par lot** possible via script.
-- **Entraînement et évaluation** du modèle sur vos propres données.
+- 📄 Classifie automatiquement les documents en trois catégories : permis de conduire, sécurité sociale, autres.
+- 🌐 Interface web moderne pour téléversement et affichage instantané de la prédiction.
+- 📁 Prédiction en lot sur un dossier complet d’images possible via script.
+- 🧠 Possibilité d'entraîner et tester le modèle sur vos propres données.
 
 ## Structure du projet
 
