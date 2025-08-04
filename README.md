@@ -15,6 +15,9 @@ L'application propose une interface web conviviale pour téléverser un document
 ## Aperçu
 
 ![Interface de l'application](app/assets/apercu.png)
+![Interface de l'application](app/assets/apercu1.png)
+![Interface de l'application](app/assets/apercu2.png)
+![Interface de l'application](app/assets/apercu3.png)
 *Exemple d'utilisation de l'application web.*
 
 
